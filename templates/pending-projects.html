@@ -1,0 +1,175 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Pending Student Submissions</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<link rel="stylesheet"
+href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+
+<link rel="stylesheet" href="{% static 'css/style.css' %}">
+
+</head>
+
+<body>
+
+<header class="dashboard-header">
+
+<div class="dashboard-topbar">
+
+<h2>IRS Admin</h2>
+
+<div class="topbar-right">
+
+<a href="{% url 'admin_dashboard' %}" class="submit-project-btn">
+
+<i class="bi bi-arrow-left"></i>
+
+Dashboard
+
+</a>
+
+</div>
+
+</div>
+
+</header>
+
+<div class="dashboard-layout">
+
+<!-- Sidebar -->
+
+<aside class="sidebar">
+
+<h3>Administrator</h3>
+
+<ul>
+
+<li><a href="{% url 'admin_dashboard' %}"><i class="bi bi-speedometer2"></i> Dashboard</a></li>
+
+<li><a class="active" href="{% url 'pending_projects' %}"><i class="bi bi-clock-history"></i> Review Submissions</a></li>
+
+<li><a href="{% url 'repository_upload' %}"><i class="bi bi-cloud-upload"></i> Repository Upload</a></li>
+
+<li><a href="{% url 'manage_repository' %}"><i class="bi bi-folder2-open"></i> Manage Repository</a></li>
+
+<li><a href="{% url 'manage_students' %}"><i class="bi bi-people"></i> Manage Students</a></li>
+
+<li><a href="{% url 'statistics' %}"><i class="bi bi-bar-chart"></i> Statistics</a></li>
+
+<li><a href="{% url 'activity_log' %}"><i class="bi bi-clock"></i> Activity Log</a></li>
+
+</ul>
+
+</aside>
+
+<main class="dashboard-main">
+
+<section class="welcome-section">
+
+<h1>Pending Student Submissions</h1>
+
+<p>
+
+Review projects before publishing them to the repository.
+
+</p>
+
+</section>
+
+{% for project in projects %}
+
+    <div class="dashboard-card">
+
+        <h2>{{ project.title }}</h2>
+
+        <p>
+            <strong>Student:</strong>
+            {{ project.author.get_full_name }}
+        </p>
+
+        <p>
+            <strong>Faculty:</strong>
+            {{ project.faculty.name }}
+        </p>
+
+        <p>
+            <strong>Department:</strong>
+            {{ project.department.name }}
+        </p>
+
+        <p>
+            <strong>Session:</strong>
+            {{ project.session }}
+        </p>
+
+        <p>
+            <strong>Category:</strong>
+            {{ project.category }}
+        </p>
+
+        <p>
+            <strong>Supervisor:</strong>
+            {{ project.supervisor }}
+        </p>
+
+        <p>
+            <strong>Keywords:</strong>
+            {{ project.keywords }}
+        </p>
+
+        <p>
+            <strong>Status:</strong>
+            Pending Approval
+        </p>
+
+        {% if project.project_file %}
+            <p>
+                <a href="{{ project.project_file.url }}" target="_blank">
+                    View Project Document
+                </a>
+            </p>
+        {% endif %}
+
+    <form method="POST" action="{% url 'approve_project' project.id %}">
+        {% csrf_token %}
+
+        <button type="submit" class="approve-btn">
+            <i class="bi bi-check-circle"></i>
+            Approve
+        </button>
+    </form>
+
+    </div>
+
+{% empty %}
+
+    <p>No projects are currently awaiting approval.</p>
+
+{% endfor %}
+
+</main>
+
+</div>
+
+<script src="{% static 'js/pending-projects.js' %}"></script>
+<script src="{% static 'js/activity-helper.js' %}">
+</script><script src="{% static 'js/auth.js' %}"></script>
+<!-- <script src="../assets/js/pending-projects.js"></script>
+<script src="../assets/js/activity-helper.js"></script>
+<script src="../assets/js/auth.js"></script> -->
+</body>
+
+</html>

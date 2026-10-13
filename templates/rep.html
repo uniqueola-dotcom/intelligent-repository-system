@@ -1,0 +1,227 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport"
+content="width=device-width, initial-scale=1.0">
+
+<title>Repository</title>
+
+<link rel="preconnect"
+href="https://fonts.googleapis.com">
+
+<link rel="preconnect"
+href="https://fonts.gstatic.com"
+crossorigin>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+rel="stylesheet">
+
+<link rel="stylesheet"
+href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+
+<link rel="stylesheet" href="{% static 'css/style.css' %}">
+
+</head>
+
+<body>
+    <header>
+
+        <nav class="navbar container">
+
+            <div class="logo">
+                <i class="bi bi-journal-bookmark-fill"></i>
+                <span>IRS</span>
+            </div>
+
+            <ul class="nav-links">
+
+                <li><a href="#">Home</a></li>
+
+                <li><a href="#">Repository</a></li>
+
+                <li><a href="#">Originality Checker</a></li>
+
+                <li><a href="#">About</a></li>
+
+            </ul>
+
+            <div class="auth-buttons">
+
+                <a href="#" class="login-btn">Login</a>
+
+                <a href="#" class="register-btn">Register</a>
+
+            </div>
+
+        </nav>
+
+    </header>
+
+    <section class="repository-hero">
+
+<h1>
+
+Project Repository
+
+</h1>
+
+<p>
+
+Browse approved undergraduate projects from different faculties and departments.
+
+</p>
+
+</section>
+
+<section class="repository-search">
+
+<input
+type="text"
+id="searchInput"
+placeholder="Search by title, student or keyword...">
+
+<select id="facultyFilter">
+
+<option value="">
+
+All Faculties
+
+</option>
+
+</select>
+
+<select id="departmentFilter">
+
+<option value="">
+
+All Departments
+
+</option>
+
+</select>
+
+<select id="sortProjects">
+
+<option value="newest">
+
+Newest
+
+</option>
+
+<option value="oldest">
+
+Oldest
+
+</option>
+
+<option value="az">
+
+A-Z
+
+</option>
+
+<option value="za">
+
+Z-A
+
+</option>
+
+</select>
+
+</section>
+
+<section class="repository-section">
+
+<h2>Recently Added Projects</h2>
+
+<div id="recentProjects" class="repository-grid"></div>
+
+</section>
+
+<section class="repository-section">
+
+<h2>Most Downloaded Projects</h2>
+
+<div id="popularProjects" class="repository-grid"></div>
+
+</section>
+
+<section>
+
+<div
+id="repositoryContainer"
+class="repository-grid">
+
+</div>
+
+</section>
+
+<footer>
+
+    <div class="container footer-content">
+
+        <div>
+
+            <h3>Intelligent Repository System</h3>
+
+            <p>
+
+                A digital repository designed to enhance originality
+                in undergraduate research projects.
+
+            </p>
+
+        </div>
+
+        <div>
+
+            <h4>Quick Links</h4>
+
+            <ul>
+
+                <li><a href="#">Home</a></li>
+
+                <li><a href="#">Repository</a></li>
+
+                <li><a href="#">Originality Checker</a></li>
+
+                <li><a href="#">Login</a></li>
+
+            </ul>
+
+        </div>
+
+        <div>
+
+            <h4>Contact</h4>
+
+            <p>Email: repository@abu.edu.ng</p>
+
+            <p>Ahmadu Bello University, Zaria</p>
+
+        </div>
+
+    </div>
+
+    <div class="copyright">
+
+        © 2026 Intelligent Repository System.
+        All Rights Reserved.
+
+    </div>
+
+</footer>
+
+<script src="{% static 'js/abu-data.js' %}"></script>
+<script src="{% static 'js/repository.js' %}"></script>
+<!-- <script src="../assets/js/abu-data.js"></script>
+<script src="../assets/js/repository.js"></script> -->
+
+</body>
+
+</html>

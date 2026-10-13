@@ -1,0 +1,68 @@
+# Query: upload-project
+# ContextLines: 1
+
+13 results - 12 files
+
+assets\js\auth.js:
+  258  
+  259:     "upload-project.html",
+  260  
+
+pages\download-history.html:
+  134  
+  135:                     <a href="upload-project.html">
+  136  
+
+pages\my-submission.html:
+  134  
+  135:                     <a href="upload-project.html">
+  136  
+
+pages\profile.html:
+  134  
+  135:                     <a href="upload-project.html">
+  136  
+
+pages\student-dashboard.html:
+  134  
+  135:                     <a href="upload-project.html">
+  136  
+
+  279  
+  280:                     <a href="upload-project.html">
+  281  
+
+pages\upload-project.html:
+  134  
+  135:                     <a href="upload-project.html">
+  136  
+
+repository\urls.py:
+  6      path("project/<int:project_id>/", views.project_detail, name="project_detail"),
+  7:     path("upload-project/", views.upload_project, name="upload_project")
+  8  ]
+
+repository\views.py:
+  76          request,
+  77:         "upload-project.html",
+  78          {
+
+static\js\auth.js:
+  258  
+  259:     "upload-project.html",
+  260  
+
+templates\download-history.html:
+  135  
+  136:                     <a href="{upload-project.html">
+  137  
+
+templates\my-submission.html:
+  135  
+  136:                     <a href="upload-project.html">
+  137  
+
+templates\profile.html:
+  135  
+  136:                     <a href="upload-project.html">
+  137  

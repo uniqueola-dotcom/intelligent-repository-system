@@ -1,0 +1,87 @@
+# Query: student-dashboard
+# ContextLines: 1
+
+17 results - 15 files
+
+assets\js\auth.js:
+  208  
+  209:                 window.location.href="student-dashboard.html";
+  210  
+
+  256  
+  257:     "student-dashboard.html",
+  258  
+
+dashboard\urls.py:
+   9      path(
+  10:         "student-dashboard/",
+  11          views.student_dashboard,
+
+dashboard\views.py:
+  42          request,
+  43:         "student-dashboard.html",
+  44          context
+
+irs_project\settings.py:
+  136  LOGIN_URL = "/login/"
+  137: LOGIN_REDIRECT_URL = "/student-dashboard/"
+  138  LOGOUT_REDIRECT_URL = "/"
+
+pages\download-history.html:
+  122  
+  123:                     <a href="student-dashboard.html" class="active">
+  124  
+
+pages\login.html:
+  25  
+  26: window.location.href="pages/student-dashboard.html";
+  27  
+
+pages\my-submission.html:
+  122  
+  123:                     <a href="student-dashboard.html" class="active">
+  124  
+
+pages\profile.html:
+  122  
+  123:                     <a href="student-dashboard.html" class="active">
+  124  
+
+pages\student-dashboard.html:
+  122  
+  123:                     <a href="student-dashboard.html" class="active">
+  124  
+
+pages\upload-project.html:
+  122  
+  123:                     <a href="student-dashboard.html" class="active">
+  124  
+
+static\js\auth.js:
+  208  
+  209:                 window.location.href="student-dashboard.html";
+  210  
+
+  256  
+  257:     "student-dashboard.html",
+  258  
+
+templates\download-history.html:
+  123  
+  124:                     <a href="studentdashboard.html" class="active">
+  125  
+
+templates\login.html:
+  26  
+  27: window.location.href="pages/student-dashboard.html";
+  28  
+
+templates\my-submission.html:
+  123  
+  124:                     <a href="student-dashboard.html" class="active">
+  125  
+
+templates\profile.html:
+  123  
+  124:                     <a href="student-dashboard.html" class="active">
+  125  

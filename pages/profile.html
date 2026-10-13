@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Student Dashboard | Intelligent Repository System</title>
+
+    <!-- Google Fonts -->
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Bootstrap Icons -->
+
+    <link rel="stylesheet"
+        href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+
+    <!-- Main CSS -->
+
+    <link rel="stylesheet" href="../assets/css/style.css">
+
+</head>
+
+<body>
+
+    <!-- ===========================
+         DASHBOARD HEADER
+    ============================ -->
+
+    <header class="dashboard-header">
+
+        <div class="dashboard-topbar">
+
+            <a href="../index.html" class="logo">
+
+                <i class="bi bi-journal-richtext"></i>
+
+                <span>Intelligent Repository</span>
+
+            </a>
+
+            <div class="topbar-right">
+
+                <button class="notification-btn">
+
+                    <i class="bi bi-bell"></i>
+
+                    <span class="notification-count">3</span>
+
+                </button>
+
+                <div class="user-dropdown">
+
+                    <button class="user-btn">
+
+                        <i class="bi bi-person-circle"></i>
+
+                        <span>Abdullahi</span>
+
+                        <i class="bi bi-chevron-down"></i>
+
+                    </button>
+
+                    <div class="dropdown-content">
+
+                        <a href="profile.html">
+
+                            <i class="bi bi-person"></i>
+
+                            My Profile
+
+                        </a>
+
+                        <a href="download-history.html">
+
+                            <i class="bi bi-download"></i>
+
+                            Downloads
+
+                        </a>
+
+                        <button onclick="logoutStudent()">
+
+                        <i class="bi bi-box-arrow-right"></i>
+
+                        Logout
+
+                        </button>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </header>
+
+    <!-- ===========================
+         DASHBOARD
+    ============================ -->
+
+    <section class="dashboard-layout">
+
+        <!-- Sidebar -->
+
+        <aside class="sidebar">
+
+            <h3>Student Panel</h3>
+
+            <ul>
+
+                <li>
+
+                    <a href="student-dashboard.html" class="active">
+
+                        <i class="bi bi-speedometer2"></i>
+
+                        Dashboard
+
+                    </a>
+
+                </li>
+
+                <li>
+
+                    <a href="upload-project.html">
+
+                        <i class="bi bi-upload"></i>
+
+                        Upload Project
+
+                    </a>
+
+                </li>
+
+                <li>
+
+                    <a href="my-submissions.html">
+
+                        <i class="bi bi-folder-check"></i>
+
+                        My Submissions
+
+                    </a>
+
+                </li>
+
+                <li>
+
+                    <a href="download-history.html">
+
+                        <i class="bi bi-download"></i>
+
+                        Downloads
+
+                    </a>
+
+                </li>
+
+                <li>
+
+                    <a href="profile.html">
+
+                        <i class="bi bi-person"></i>
+
+                        Profile
+
+                    </a>
+
+                </li>
+
+                <li>
+
+                    <button onclick="logoutStudent()">
+
+                    <i class="bi bi-box-arrow-right"></i>
+
+                    Logout
+
+                    </button>
+
+                </li>
+
+            </ul>
+
+        </aside>
+        
+        <main class="dashboard-main">
+
+    <section class="welcome-section">
+
+        <h1>My Profile</h1>
+
+        <p>
+
+            View and update your account information.
+
+        </p>
+
+    </section>
+
+    <div class="profile-container">
+
+        <!-- Profile Card -->
+
+        <div class="dashboard-card profile-card">
+
+            <div class="profile-avatar">
+
+                <i class="bi bi-person-circle"></i>
+
+            </div>
+
+            <h2>Abdullahi Mubarak</h2>
+
+            <p>Student</p>
+
+        </div>
+
+        <!-- Profile Details -->
+
+        <div class="dashboard-card">
+
+            <div class="card-header">
+
+                <h2>Personal Information</h2>
+
+            </div>
+
+            <form class="profile-form">
+
+                <div class="form-group">
+
+                    <label>Full Name</label>
+
+                    <input
+                        type="text"
+                        value="Abdullahi Mubarak"
+                        readonly>
+
+                </div>
+
+                <div class="form-group">
+
+                    <label>Matric Number</label>
+
+                    <input
+                        type="text"
+                        value="U20CS1023"
+                        readonly>
+
+                </div>
+
+                <div class="form-group">
+
+                    <label>Email Address</label>
+
+                    <input
+                        type="email"
+                        value="abdullahi@example.com"
+                        readonly>
+
+                </div>
+
+                <div class="form-group">
+
+                    <label>Faculty</label>
+
+                    <input
+                        type="text"
+                        value="Physical Sciences"
+                        readonly>
+
+                </div>
+
+                <div class="form-group">
+
+                    <label>Department</label>
+
+                    <input
+                        type="text"
+                        value="Computer Science"
+                        readonly>
+
+                </div>
+
+                <div class="form-group">
+
+                    <label>Phone Number</label>
+
+                    <input
+                        type="text"
+                        placeholder="Enter phone number">
+
+                </div>
+
+                <button class="submit-project-btn">
+
+                    <i class="bi bi-check-circle"></i>
+
+                    Update Profile
+
+                </button>
+
+            </form>
+
+        </div>
+
+        <!-- Change Password -->
+
+        <div class="dashboard-card">
+
+            <div class="card-header">
+
+                <h2>Change Password</h2>
+
+            </div>
+
+            <form class="profile-form">
+
+                <div class="form-group">
+
+                    <label>Current Password</label>
+
+                    <input
+                        type="password"
+                        required>
+
+                </div>
+
+                <div class="form-group">
+
+                    <label>New Password</label>
+
+                    <input
+                        type="password"
+                        required>
+
+                </div>
+
+                <div class="form-group">
+
+                    <label>Confirm New Password</label>
+
+                    <input
+                        type="password"
+                        required>
+
+                </div>
+
+                <button class="submit-project-btn">
+
+                    <i class="bi bi-key"></i>
+
+                    Change Password
+
+                </button>
+
+            </form>
+
+        </div>
+
+    </div>
+
+</main>
+<script src="../assets/js/logout.js"></script>
+</body>

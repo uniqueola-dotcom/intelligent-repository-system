@@ -1,0 +1,285 @@
+{% load static %}
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Intelligent Repository System</title>
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Poppins:wght@500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+
+<body>
+    <header>
+
+        <nav class="navbar container">
+
+            <div class="logo">
+                <i class="bi bi-journal-bookmark-fill"></i>
+                <span>IRS</span>
+            </div>
+
+            <ul class="nav-links">
+
+            <li><a href="{% url 'home' %}">Home</a></li>
+
+                <li><a href="{% url 'repository' %}">Repository</a></li>
+
+                <li><a href="{% url 'originality_checker' %}">Originality Checker</a></li>
+
+                <li><a href="#how-it-works">How It Works</a></li>
+
+            </ul>
+
+            <div class="auth-buttons">
+
+              {% if user.is_authenticated %}
+
+              {% if user.is_staff %}
+                  <a href="{% url 'admin_dashboard' %}" class="login-btn">
+                      Admin Dashboard
+                  </a>
+              {% else %}
+                  <a href="{% url 'student_dashboard' %}" class="login-btn">
+                      My Dashboard
+                  </a>
+              {% endif %}
+
+              <a href="{% url 'logout' %}" class="register-btn">
+                  Logout
+              </a>
+
+              {% else %}
+
+              <a href="{% url 'login' %}" class="login-btn">
+                  Login
+              </a>
+
+              <a href="{% url 'register' %}" class="register-btn">
+                  Register
+              </a>
+
+           {% endif %}
+
+          </div>
+
+        </nav>
+
+    </header>
+    <!-- =========================
+     Repository Header
+========================== -->
+
+<section class="repository-header">
+
+    <div class="container">
+
+        <h1>Project Repository</h1>
+
+        <p>
+
+            Search and discover approved undergraduate projects across all departments.
+
+        </p>
+
+    </div>
+
+</section>
+<!-- =========================
+     Search & Filters
+========================== --> 
+
+<section class="repository-search">
+
+    <form method="GET" action="{% url 'repository' %}">
+
+  <div class="search-container">
+    <input type="text" name="q" value="{{ query }}"
+           placeholder="Search projects by title or keyword...">
+    <button type="submit"><i class="bi bi-search"></i> Search</button>
+  </div>
+
+  <div class="filter-grid">
+
+    <select name="faculty">
+  <option value="">Select Faculty</option>
+  {% for f in faculties %}
+    <option value="{{ f.id }}" {% if f.id|stringformat:"s" == selected_faculty %}selected{% endif %}>
+      {{ f.name }}
+    </option>
+  {% endfor %}
+</select>
+
+<select name="department">
+  <option value="">Select Department</option>
+  {% for d in departments %}
+    <option value="{{ d.id }}" {% if d.id|stringformat:"s" == selected_department %}selected{% endif %}>
+      {{ d.name }}
+    </option>
+  {% endfor %}
+</select>
+
+<select name="session">
+  <option value="">Select Academic Session</option>
+  {% for s in sessions %}
+    <option value="{{ s }}" {% if s == selected_session %}selected{% endif %}>{{ s }}</option>
+  {% endfor %}
+</select>
+
+  </div>
+
+</form>
+
+</section>
+
+{{ selected_department|json_script:"selected-department" }}
+<script>
+    window.departmentsUrlTemplate =
+        "{% url 'get_departments' faculty_id=0 %}";
+</script>
+<script src="{% static 'js/repository-filters.js' %}"></script>
+
+<!-- =========================
+     Search Results
+========================== -->
+
+<section class="repository-results">
+
+    <div class="container">
+
+        <div class="results-header">
+
+            <h3>Showing 1–10 of {{ total_projects }} Projects</h3>
+
+            <p>Browse approved undergraduate research projects.</p>
+
+        </div>
+
+    </div>
+
+</section>
+
+<section class="project-results">
+  <div class="container">
+    {% for project in projects %}
+      <div class="project-result-card">
+
+        <span class="status approved">Approved</span>
+
+        <h2>{{ project.title }}</h2>
+
+        <div class="project-meta">
+          <span><strong>Faculty:</strong> {{ project.faculty }}</span>
+          <span><strong>Department:</strong> {{ project.department }}</span>
+          <span><strong>Session:</strong> {{ project.session }}</span>
+          <span><strong>Supervisor:</strong> {{ project.supervisor }}</span>
+        </div>
+
+        <div class="keywords">
+          <strong>Keywords:</strong> {{ project.keywords }}
+        </div>
+
+        <p class="abstract">{{ project.abstract }}</p>
+
+        <a href="{% url 'project_detail' project.id %}" class="view-btn">
+          View Details →
+        </a>
+
+      </div>
+    {% empty %}
+      <p>No projects found.</p>
+    {% endfor %}
+  </div>
+</section>
+
+
+
+<section class="pagination-section">
+  <div class="container">
+    <div class="pagination">
+
+      {% if page_obj.has_previous %}
+        <a href="?{{ request.GET.urlencode }}&page={{ page_obj.previous_page_number }}">Previous</a>
+      {% else %}
+        <span class="disabled">Previous</span>
+      {% endif %}
+
+      {% for num in page_obj.paginator.page_range %}
+        {% if num == page_obj.number %}
+          <a href="?{{ request.GET.urlencode }}&page={{ num }}" class="active-page">{{ num }}</a>
+        {% else %}
+          <a href="?{{ request.GET.urlencode }}&page={{ num }}">{{ num }}</a>
+        {% endif %}
+      {% endfor %}
+
+      {% if page_obj.has_next %}
+        <a href="?{{ request.GET.urlencode }}&page={{ page_obj.next_page_number }}">Next</a>
+      {% else %}
+        <span class="disabled">Next</span>
+      {% endif %}
+
+    </div>
+  </div>
+</section>
+
+<footer>
+
+    <div class="container footer-content">
+
+        <div>
+
+            <h3>Intelligent Repository System</h3>
+
+            <p>
+
+                A digital repository designed to enhance originality
+                in undergraduate research projects.
+
+            </p>
+
+        </div>
+
+        <div>
+
+            <h4>Quick Links</h4>
+
+            <ul>
+
+                <li><a href="{% url 'home' %}">Home</a></li>
+
+                <li><a href="{% url 'repository' %}">Repository</a></li>
+
+                <li><a href="{% url 'originality_checker' %}">Originality Checker</a></li>
+
+                <li><a href="{% url 'login' %}">Login</a></li>
+
+            </ul>
+
+        </div>
+
+        <div>
+
+            <h4>Contact</h4>
+
+            <p>Email: repository@abu.edu.ng</p>
+
+            <p>Ahmadu Bello University, Zaria</p>
+
+        </div>
+
+    </div>
+
+    <div class="copyright">
+
+        © 2026 Intelligent Repository System.
+        All Rights Reserved.
+
+    </div>
+
+</footer>
+</body>

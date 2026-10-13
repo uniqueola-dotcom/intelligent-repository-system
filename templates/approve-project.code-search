@@ -1,0 +1,19 @@
+# Query: approve-project
+# ContextLines: 1
+
+3 results - 3 files
+
+dashboard\urls.py:
+  21      path(
+  22:     "admin/approve-projects/<int:project_id>/",
+  23      views.approve_project,
+
+irs_project\urls.py:
+  10  
+  11:     path("admin/approve-projects/<int:project_id>/", repository_views.approve_project, name="approve_project"),
+  12  
+
+repository\urls.py:
+  8      path("admin/pending-projects/", views.pending_projects, name="pending_projects"),
+  9:     path("admin/approve-projects/<int:project_id>/", views.approve_project,name="approve_project"),
+  10  ]

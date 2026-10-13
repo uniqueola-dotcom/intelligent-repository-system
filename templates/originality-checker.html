@@ -1,0 +1,320 @@
+{% load static %}
+
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+<meta charset="UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Originality Checker | Intelligent Repository System</title>
+
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Poppins:wght@500;600;700&display=swap" rel="stylesheet">
+
+<!-- Bootstrap Icons -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+
+<link rel="stylesheet" href="{% static 'css/style.css' %}">
+
+</head>
+
+<body>
+<!-- =========================
+     HEADER
+========================== -->
+
+<header>
+
+    <nav class="navbar container">
+
+        <div class="logo">
+
+            <i class="bi bi-journal-bookmark-fill"></i>
+
+            <span>IRS</span>
+
+        </div>
+
+
+        <ul class="nav-links">
+
+            <li>
+                <a href="{% url 'home' %}">
+                    Home
+                </a>
+            </li>
+
+            <li>
+                <a href="{% url 'repository' %}">
+                    Repository
+                </a>
+            </li>
+
+            <li>
+                <a href="{% url 'originality_checker' %}">
+                    Originality Checker
+                </a>
+            </li>
+
+            <li>
+                <a href="#how-it-works">How It Works</a>
+            </li>
+
+        </ul>
+
+
+        <div class="auth-buttons">
+
+            {% if user.is_authenticated %}
+
+                {% if user.is_staff %}
+                    <a href="{% url 'admin_dashboard' %}" class="login-btn">
+                        Admin Dashboard
+                    </a>
+                {% else %}
+                    <a href="{% url 'student_dashboard' %}" class="login-btn">
+                        My Dashboard
+                    </a>
+                {% endif %}
+
+                <a href="{% url 'logout' %}" class="register-btn">
+                    Logout
+                </a>
+
+            {% else %}
+
+                <a href="{% url 'login' %}" class="login-btn">
+                    Login
+                </a>
+
+                <a href="{% url 'register' %}" class="register-btn">
+                    Register
+                </a>
+
+            {% endif %}
+
+        </div>
+
+    </nav>
+
+</header>
+
+
+<!-- =========================
+     ORIGINALITY CHECKER
+========================== -->
+
+<section class="auth-section">
+
+    <div class="container">
+
+        <div class="auth-card">
+
+            <h1>
+                Originality Checker
+            </h1>
+
+            <p>
+                Check how similar your proposed final-year project
+                is to projects already available in the repository.
+            </p>
+
+
+            <form method="POST">
+
+                {% csrf_token %}
+
+
+                <div class="form-group">
+
+                    <label for="title">
+                        Project Title
+                    </label>
+
+                    <input
+                        type="text"
+                        id="title"
+                        name="title"
+                        placeholder="Enter your proposed project title"
+                        required
+                    >
+
+                </div>
+
+
+
+
+                <div class="form-group">
+
+                    <label for="keywords">
+                        Keywords
+                    </label>
+
+                    <input
+                        type="text"
+                        id="keywords"
+                        name="keywords"
+                        placeholder="e.g. machine learning, prediction, students"
+                    >
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label for="abstract">
+                        Project Abstract
+                    </label>
+
+                    <textarea
+                        rows="8"
+                        id="abstract"
+                        name="abstract"
+                        placeholder="Enter your proposed project abstract..."
+                        style="resize: none; width: 100%; height: 180px; box-sizing: border-box;"
+                        required
+                    ></textarea>
+
+                </div>
+
+
+                <button
+                    type="submit"
+                    class="auth-btn"
+                >
+
+                    <i class="bi bi-search"></i>
+
+                    Check Project Originality
+
+                </button>
+
+
+            </form>
+
+
+            <div class="auth-footer">
+
+                <p>
+
+                    <strong>How does it work?</strong>
+
+                </p>
+
+                <p>
+
+                    The system uses Natural Language Processing
+                    to compare your proposed project with approved
+                    projects in the repository.
+
+                </p>
+
+                <p>
+
+                    The analysis considers the project title, keywords and abstract.
+
+                </p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================
+     FOOTER
+========================== -->
+
+<footer>
+
+    <div class="container footer-content">
+
+        <div>
+
+            <h3>
+                Intelligent Repository System
+            </h3>
+
+            <p>
+                A digital repository designed to enhance originality
+                in undergraduate research projects.
+            </p>
+
+        </div>
+
+
+        <div>
+
+            <h4>
+                Quick Links
+            </h4>
+
+            <ul>
+
+                <li>
+                    <a href="{% url 'home' %}">
+                        Home
+                    </a>
+                </li>
+
+                <li>
+                    <a href="{% url 'repository' %}">
+                        Repository
+                    </a>
+                </li>
+
+                <li>
+                    <a href="{% url 'originality_checker' %}">
+                        Originality Checker
+                    </a>
+                </li>
+
+                <li>
+                    <a href="{% url 'login' %}">
+                        Login
+                    </a>
+                </li>
+
+            </ul>
+
+        </div>
+
+
+        <div>
+
+            <h4>
+                Contact
+            </h4>
+
+            <p>
+                Email: repository@abu.edu.ng
+            </p>
+
+            <p>
+                Ahmadu Bello University, Zaria
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <div class="copyright">
+
+        © 2026 Intelligent Repository System.
+        All Rights Reserved.
+
+    </div>
+
+</footer>
+```
+
+</body>
+
+</html>

@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Student Dashboard | Intelligent Repository System</title>
+
+    <!-- Google Fonts -->
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Bootstrap Icons -->
+
+    <link rel="stylesheet"
+        href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+
+    <!-- Main CSS -->
+
+    <link rel="stylesheet" href="../assets/css/style.css">
+
+</head>
+
+<body>
+
+    <!-- ===========================
+         DASHBOARD HEADER
+    ============================ -->
+
+    <header class="dashboard-header">
+
+        <div class="dashboard-topbar">
+
+            <a href="../index.html" class="logo">
+
+                <i class="bi bi-journal-richtext"></i>
+
+                <span>Intelligent Repository</span>
+
+            </a>
+
+            <div class="topbar-right">
+
+                <button class="notification-btn">
+
+                    <i class="bi bi-bell"></i>
+
+                    <span class="notification-count">3</span>
+
+                </button>
+
+                <div class="user-dropdown">
+
+                    <button class="user-btn">
+
+                        <i class="bi bi-person-circle"></i>
+
+                        <span>Abdullahi</span>
+
+                        <i class="bi bi-chevron-down"></i>
+
+                    </button>
+
+                    <div class="dropdown-content">
+
+                        <a href="profile.html">
+
+                            <i class="bi bi-person"></i>
+
+                            My Profile
+
+                        </a>
+
+                        <a href="download-history.html">
+
+                            <i class="bi bi-download"></i>
+
+                            Downloads
+
+                        </a>
+
+                        <button onclick="logoutStudent()">
+
+                        <i class="bi bi-box-arrow-right"></i>
+
+                        Logout
+
+                        </button>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </header>
+
+    <!-- ===========================
+         DASHBOARD
+    ============================ -->
+
+    <section class="dashboard-layout">
+
+        <!-- Sidebar -->
+
+        <aside class="sidebar">
+
+            <h3>Student Panel</h3>
+
+            <ul>
+
+                <li>
+
+                    <a href="student-dashboard.html" class="active">
+
+                        <i class="bi bi-speedometer2"></i>
+
+                        Dashboard
+
+                    </a>
+
+                </li>
+
+                <li>
+
+                    <a href="upload-project.html">
+
+                        <i class="bi bi-upload"></i>
+
+                        Upload Project
+
+                    </a>
+
+                </li>
+
+                <li>
+
+                    <a href="my-submissions.html">
+
+                        <i class="bi bi-folder-check"></i>
+
+                        My Submissions
+
+                    </a>
+
+                </li>
+
+                <li>
+
+                    <a href="download-history.html">
+
+                        <i class="bi bi-download"></i>
+
+                        Downloads
+
+                    </a>
+
+                </li>
+
+                <li>
+
+                    <a href="profile.html">
+
+                        <i class="bi bi-person"></i>
+
+                        Profile
+
+                    </a>
+
+                </li>
+
+                <li>
+
+                    <button onclick="logoutStudent()">
+
+                    <i class="bi bi-box-arrow-right"></i>
+
+                    Logout
+
+                    </button>
+
+                </li>
+
+            </ul>
+
+        </aside>
+
+        <!-- Main Content -->
+
+        <main class="dashboard-main">
+
+            <!-- Welcome -->
+
+            <section class="welcome-section">
+
+                <h1>
+
+                    Good Afternoon,
+
+                    <span>Abdullahi 👋</span>
+
+                </h1>
+
+                <p>
+
+                    Manage your undergraduate projects, monitor submissions,
+                    and access approved research materials.
+
+                </p>
+
+            </section>
+
+            <!-- Statistics -->
+
+            <section class="stats-grid">
+
+                <div class="stat-card">
+
+                    <i class="bi bi-upload"></i>
+
+                    <h2>2</h2>
+
+                    <p>Projects Uploaded</p>
+
+                </div>
+
+                <div class="stat-card">
+
+                    <i class="bi bi-patch-check"></i>
+
+                    <h2>1</h2>
+
+                    <p>Approved</p>
+
+                </div>
+
+                <div class="stat-card">
+
+                    <i class="bi bi-hourglass-split"></i>
+
+                    <h2>1</h2>
+
+                    <p>Pending</p>
+
+                </div>
+
+                <div class="stat-card">
+
+                    <i class="bi bi-download"></i>
+
+                    <h2>15</h2>
+
+                    <p>Downloads</p>
+
+                </div>
+
+            </section>
+
+            <!-- Quick Actions -->
+
+            <section class="dashboard-card">
+
+                <div class="card-header">
+
+                    <h2>Quick Actions</h2>
+
+                </div>
+
+                <div class="quick-actions">
+
+                    <a href="upload-project.html">
+
+                        <i class="bi bi-upload"></i>
+
+                        Upload Project
+
+                    </a>
+
+                    <a href="repository.html">
+
+                        <i class="bi bi-search"></i>
+
+                        Browse Repository
+
+                    </a>
+
+                    <a href="my-submissions.html">
+
+                        <i class="bi bi-folder2-open"></i>
+
+                        My Submissions
+
+                    </a>
+
+                </div>
+
+            </section>
+
+            <!-- Recent Activity -->
+
+            <section class="dashboard-card">
+
+                <div class="card-header">
+
+                    <h2>Recent Activity</h2>
+
+                </div>
+
+                <div class="activity-list">
+
+                    <div class="activity-item">
+
+                        <i class="bi bi-upload"></i>
+
+                        <div>
+
+                            <h4>
+
+                                Intelligent Repository System uploaded.
+
+                            </h4>
+
+                            <small>
+
+                                Today • 09:30 AM
+
+                            </small>
+
+                        </div>
+
+                    </div>
+
+                    <div class="activity-item">
+
+                        <i class="bi bi-clock-history"></i>
+
+                        <div>
+
+                            <h4>
+
+                                Awaiting administrator approval.
+
+                            </h4>
+
+                            <small>
+
+                                Yesterday
+
+                            </small>
+
+                        </div>
+
+                    </div>
+
+                    <div class="activity-item">
+
+                        <i class="bi bi-download"></i>
+
+                        <div>
+
+                            <h4>
+
+                                Downloaded Online Voting System.
+
+                            </h4>
+
+                            <small>
+
+                                2 Days Ago
+
+                            </small>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+        </main>
+
+    </section>
+
+    <script src="../assets/js/dashboard.js"></script>
+    <script src="../assets/js/logout.js"></script>
+</body>
+
+</html>

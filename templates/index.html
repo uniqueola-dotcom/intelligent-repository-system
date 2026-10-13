@@ -1,0 +1,425 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Intelligent Repository System</title>
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Poppins:wght@500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+
+<body>
+
+    <!-- ================= NAVIGATION ================= -->
+
+    <header>
+
+        <nav class="navbar container">
+
+            <div class="logo">
+                <i class="bi bi-journal-bookmark-fill"></i>
+                <span>IRS</span>
+            </div>
+
+            <ul class="nav-links">
+
+                <li><a href="{% url 'home' %}">Home</a></li>
+
+                <li><a href="{% url 'repository' %}">Repository</a></li>
+
+                <li><a href="{% url 'originality_checker' %}">Originality Checker</a></li>
+
+                <a href="#how-it-works">How It Works</a>
+
+            </ul>
+
+            
+<div class="auth-buttons">
+
+    {% if user.is_authenticated %}
+
+        {% if user.is_staff %}
+            <a href="{% url 'admin_dashboard' %}" class="login-btn">
+                Admin Dashboard
+            </a>
+        {% else %}
+            <a href="{% url 'student_dashboard' %}" class="login-btn">
+                My Dashboard
+            </a>
+        {% endif %}
+
+        <a href="{% url 'logout' %}" class="register-btn">
+            Logout
+        </a>
+
+    {% else %}
+
+        <a href="{% url 'login' %}" class="login-btn">
+            Login
+        </a>
+
+        <a href="{% url 'register' %}" class="register-btn">
+            Register
+        </a>
+
+    {% endif %}
+
+</div>
+
+
+        </nav>
+
+    </header>
+
+
+
+
+    <!-- ================= HERO ================= -->
+
+    <section class="hero">
+
+        <div class="container hero-content">
+
+            <div class="hero-text">
+
+                <h1>
+                    Intelligent Repository System
+                </h1>
+
+                <h2>
+                    Enhancing Originality in Undergraduate Research
+                </h2>
+
+                <p>
+
+                    Search thousands of approved undergraduate projects,
+                    discover related research topics, and verify the originality
+                    of your proposed project idea.
+
+                </p>
+
+                
+            <form class="search-box" method="GET" action="{% url 'repository' %}">
+                <input
+                    type="search"
+                    name="q"
+                    placeholder="Search project titles, keywords or abstracts..."
+                    aria-label="Search approved projects"
+                    required
+                >
+
+                <button type="submit">
+                    <i class="bi bi-search"></i>
+                    Search
+                </button>
+            </form>
+
+
+            </div>
+
+
+            <div class="hero-image">
+
+                <i class="bi bi-folder2-open"></i>
+
+            </div>
+
+        </div>
+
+    </section>
+
+    <section class="originality-section">
+    <div class="originality-content">
+        <span class="section-label">
+            ORIGINALITY ENHANCEMENT
+        </span>
+
+        <h2>Check Your Project Idea Before You Begin</h2>
+
+        <p>
+            Compare your proposed research topic with projects
+            already in the repository. Identify similar work
+            early and discover opportunities to develop a
+            more distinctive research direction.
+        </p>
+
+        <a href="{% url 'originality_checker' %}" class="primary-btn">
+            Check Originality Of Your Project
+        </a>
+    </div>
+    </section>
+
+    <!-- =========================
+     Repository Statistics
+========================== -->
+
+<section class="statistics">
+
+    <div class="container">
+
+        <div class="section-title">
+
+            <h2>Repository Overview</h2>
+
+            <p>Current statistics of the repository.</p>
+
+        </div>
+
+        <div class="stats-grid">
+
+            <div class="stat-card">
+
+                <i class="bi bi-folder-fill"></i>
+
+                <h3>{{ total_projects }}</h3>
+
+                <span>Approved Projects</span>
+
+            </div>
+
+            <div class="stat-card">
+
+                <i class="bi bi-buildings-fill"></i>
+
+                <h3>{{ total_faculties }}</h3>
+
+                <span>Faculties</span>
+
+            </div>
+
+            <div class="stat-card">
+
+                <i class="bi bi-diagram-3-fill"></i>
+
+                <h3>{{ total_departments }}</h3>
+
+                <span>Departments</span>
+
+            </div>
+
+            <div class="stat-card">
+
+                <i class="bi bi-tags-fill"></i>
+
+                <h3>{{ total_categories }}</h3>
+
+                <span>Categories</span>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- =========================
+     Featured Projects
+========================== -->
+
+<section class="featured-projects">
+
+    <div class="container">
+
+        <div class="section-title">
+
+            <h2>Recently Added Projects</h2>
+
+            <p>Recently approved undergraduate projects.</p>
+
+        </div>
+
+        
+<div class="projects-grid">
+
+    {% for project in recent_projects %}
+
+        <div class="project-card">
+
+            <span class="badge approved">Approved</span>
+
+            <h3>{{ project.title }}</h3>
+
+            <p>
+                {% if project.faculty %}
+                    {{ project.faculty.name }}
+                {% else %}
+                    Faculty not specified
+                {% endif %}
+                &bull;
+                {% if project.department %}
+                    {{ project.department.name }}
+                {% else %}
+                    Department not specified
+                {% endif %}
+            </p>
+
+            <small>
+                {{ project.session }} Academic Session
+            </small>
+
+            <a href="{% url 'project_detail' project.id %}">
+                View Project &rarr;
+            </a>
+
+        </div>
+
+    {% empty %}
+
+        <div class="project-card">
+            <h3>No approved projects yet</h3>
+            <p>Recently approved projects will appear here.</p>
+        </div>
+
+    {% endfor %}
+
+</div>
+
+
+
+
+</section>
+
+<!-- =========================
+     How It Works
+========================== -->
+
+<section class="how-it-works" id="how-it-works">
+
+    <div class="container">
+
+        <div class="section-title">
+
+            <h2>How It Works</h2>
+
+            <p>Getting started is simple.</p>
+
+        </div>
+
+        <div class="steps-grid">
+
+            <div class="step-card">
+
+                <div class="step-number">1</div>
+
+                <h3>Search Repository</h3>
+
+                <p>Search previous undergraduate projects using titles or keywords.</p>
+
+            </div>
+
+            <div class="step-card">
+
+                <div class="step-number">2</div>
+
+                <h3>View Projects</h3>
+
+                <p>Read abstracts and project details to guide your research.</p>
+
+            </div>
+
+            <div class="step-card">
+
+                <div class="step-number">3</div>
+
+                <h3>Check Originality</h3>
+
+                <p>Compare your proposed topic with existing research.</p>
+
+            </div>
+
+            <div class="step-card">
+
+                <div class="step-number">4</div>
+
+                <h3>Upload Project</h3>
+
+                <p>Submit your completed project for administrative approval.</p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+
+<!-- =========================
+     Footer
+========================== -->
+
+<footer>
+
+    <div class="container footer-content">
+
+        <div>
+
+            <h3>Intelligent Repository System</h3>
+
+            <p>
+
+                A digital repository designed to enhance originality
+                in undergraduate research projects.
+
+            </p>
+
+        </div>
+
+        <div>
+
+            <h4>Quick Links</h4>
+
+            <ul>
+
+                <li><a href="{% url 'home' %}">Home</a></li>
+
+                <li><a href="{% url 'repository'%}">Repository</a></li>
+
+                <li><a href="{% url 'originality_checker' %}">Originality Checker</a></li>
+
+                <li><a href="{% url 'login' %}">Login</a></li>
+
+            </ul>
+
+        </div>
+
+        <div>
+
+            <h4>Contact</h4>
+
+            <p>Email: repository@abu.edu.ng</p>
+
+            <p>Ahmadu Bello University, Zaria</p>
+
+        </div>
+
+    </div>
+
+    <div class="copyright">
+
+        © 2026 Intelligent Repository System.
+        All Rights Reserved.
+
+    </div>
+
+</footer>
+
+</body>
+<script src="{% static 'js/script.js' %}"></script>
+<script src="{% static 'js/abu-data.js' %}"></script>
+<script src="{% static 'js/auth.js' %}"></script>
+<!-- <script src="{% static 'js/script.js' %}"></script> -->
+</html>
